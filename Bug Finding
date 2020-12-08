@@ -1,0 +1,38 @@
+Bug Finding Challenge
+
+Benefits Dashboard Application
+Assumption:
+• All employees are paid $2000 per paycheck before deductions
+• There are 26 paychecks in a year
+• The cost of benefits is $1000/year for each employee
+• Each dependent incurs a cost of $500/year
+
+Issue list
+Issue 1.  Displayed Last Name Column label display entered first name value
+Issue 2.  Displayed First Name column label display entered last name value
+Issue 3.  Dependents  column name seems to be replaced as Dependent without 's'
+Issue 4.  Displayed Benefits Cost calculation is wrong current calculation includes addition dependent on top of an expected dependent. Actual result for 2 dependent shows as 76.92 however  Expected Benefits Cost for 2 dependent should be (1000+500)/26 = 57.69  
+Issue 5. The displayed Net Pay value is wrong. The wrong value might be due to invalid Benefits cost value However formula to generate Net Pay looks okay.
+Issue 6. While updating dependent value that is greater then 32, UI does not display a warning message indicating range or value should be between 0  to 32
+Issue 7. When employee id is deleted from UI and right after deletion if post service is requested with the same id, new record entry is made with zero value Salary and Gross pay
+ - Replicate steps
+    1. Add employee entry with First Name, Last Name, and Dependent value
+    2. Refresh the page to ensure a new entry is listed on the Dashboard
+    3. copy the ID value and delete the record from the UI using the delete button
+    4. using postman send the PUT request for a given ID along with update first name
+    5. request gets success, along with zero value for Salary and Gross pay in the dashboard view
+Issue 8. PUT request keeps creating a new entry if the same request is sent multiple time
+    - Replicate steps
+    1. Add employee entry with First Name, Last Name, and Dependent value
+    2. Refresh the page to ensure a new entry is listed on the Dashboard
+    3. copy the ID value and using postman send the PUT request for a given ID along with update first name
+    4. after success status, refresh the dashboard page to ensure the update is being reflected
+    5. resent same value using PUT request via Postman and refresh the dashboard page and verify the records
+    6. multiple entries being made for same records with different id
+
+Issue 9. API DEL request is not able to send the delete request
+Issue 10. API Get request by id return all records in response rather than single selected record id data 
+- Replicate steps
+    1. From the Benefit Dashboard copy the ID value for any record
+    2. send GET Employee request along with copied id as a parameter
+    3. all records are returned from the get request rather than a single record
